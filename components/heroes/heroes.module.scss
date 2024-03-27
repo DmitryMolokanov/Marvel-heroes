@@ -1,0 +1,14 @@
+.heroesMainContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.hero-card {
+  display: flex;
+  flex-direction: column;
+}
+.card-name {
+  background-color: red;
+}
