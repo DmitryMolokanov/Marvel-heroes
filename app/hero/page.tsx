@@ -2,11 +2,17 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { IheroCard } from "@/types/heroCard";
+import Hero from "@/components/hero/Hero";
+import styles from "../../components/hero/hero.module.scss";
 
-export default function Hero() {
+export default function HeroPage() {
   const [hero]: IheroCard[] = useSelector(
     (state: RootState) => state.hero.hero
   );
 
-  return <div>{hero.name}</div>;
+  return (
+    <div className={styles.HeroPageContainer}>
+      {!!hero ? <Hero hero={hero} /> : "Hero not selected"}
+    </div>
+  );
 }
