@@ -30,4 +30,5 @@ export interface IheroCard {
   };
   thumbnail: { path: string; extension: string };
   urls?: { type: string; url: string }[];
+  rating?: number;
 }

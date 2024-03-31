@@ -1,6 +1,7 @@
 import { IheroCard } from "@/types/heroCard";
 import Image from "next/image";
 import styles from "./hero.module.scss";
+import HeroRating from "./HeroRating";
 
 const Hero = ({ hero }: { hero: IheroCard }) => {
   return (
@@ -13,6 +14,10 @@ const Hero = ({ hero }: { hero: IheroCard }) => {
           height={500}
           alt={hero.name}
         />
+      </div>
+      <div className={styles.HeroFavorites}>
+        <span>Add to favorites</span>
+        <HeroRating hero={hero} />
       </div>
       <div className={styles.HeroDiscription}>
         Description: <br />
