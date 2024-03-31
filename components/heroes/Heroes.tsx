@@ -7,32 +7,22 @@ import styles from "./heroes.module.scss";
 import { IheroCard } from "@/types/heroCard";
 import Loading from "../loading/Loading";
 import { useDispatch, useSelector } from "react-redux";
-import { UseSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { setHeroes } from "@/store/reducers/heroesSlice";
-import { setHero } from "@/store/reducers/heroSlice";
-import { useRouter } from "next/navigation";
+import { setHeroesState, setOffset } from "@/store/reducers/heroesSlice";
+import HeroCard from "./HeroCard";
 
 const Heroes = ({ intialHeroes }: { intialHeroes: IheroCard[] }) => {
-  const [heroes, setHeroes] = useState(intialHeroes);
-  const [offset, setOffset] = useState(30);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const router = useRouter();
-  const selector = useSelector((state: RootState) => state.heroes);
-
-  const viewHero = (hero: IheroCard) => {
-    dispatch(setHero([hero]));
-    router.push("/hero");
-  };
+  const { heroes } = useSelector((state: RootState) => state.heroes);
+  const offset = useSelector((state: RootState) => state.heroes.offset);
 
   const setReduxState = () => {
-    dispatch(setHeroes(intialHeroes));
+    dispatch(setHeroesState(intialHeroes));
   };
-  setReduxState();
+  if (!heroes.length) setReduxState();
 
   useEffect(() => {
-    console.log(selector);
     const addHeroes = async () => {
       if (heroes.length >= 1564) return;
       if (
@@ -44,37 +34,30 @@ const Heroes = ({ intialHeroes }: { intialHeroes: IheroCard[] }) => {
           `https://gateway.marvel.com/v1/public/characters?limit=30&offset=${offset}&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
         );
         const newHeroes = await res.json();
-        setHeroes([...heroes, ...newHeroes.data.results]);
-        setOffset(offset + 30);
+        dispatch(setHeroesState(newHeroes.data.results));
+        dispatch(setOffset(30));
         setLoading(false);
       }
     };
-    window.addEventListener("scroll", addHeroes);
-    return () => {
-      window.removeEventListener("scroll", addHeroes);
+
+    const scrollHandler = () => {
+      if (!loading) addHeroes();
     };
-  }, [heroes, offset]);
+
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, [heroes, dispatch, offset, loading]);
 
   return (
     <div>
       <div className={styles.heroesMainContainer}>
-        {heroes.map((hero: IheroCard) => {
-          return (
-            <div
-              key={hero.id}
-              className={styles.heroCard}
-              onClick={() => viewHero(hero)}
-            >
-              <Image
-                src={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}
-                width={250}
-                height={250}
-                alt={hero.name}
-              />
-              <div className={styles.cardName}>{hero.name}</div>
-            </div>
-          );
-        })}
+        {!heroes.length
+          ? intialHeroes.map((hero) => <HeroCard hero={hero} key={hero.id} />)
+          : heroes.map((hero: IheroCard) => {
+              return <HeroCard hero={hero} key={hero.id} />;
+            })}
       </div>
       {loading ? <Loading /> : null}
     </div>
