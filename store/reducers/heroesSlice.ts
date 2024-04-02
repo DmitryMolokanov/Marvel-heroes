@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IheroCard } from "@/types/heroCard";
+import { Irating } from "@/types/rating";
 
 interface heroesState {
   heroes: IheroCard[];
   offset: number;
+  rating: Irating[];
 }
 
 export const initialState: heroesState = {
   heroes: [],
   offset: 30,
+  rating: [],
 };
 
 export const heroesSlice = createSlice({
@@ -22,11 +25,17 @@ export const heroesSlice = createSlice({
       state.offset += action.payload;
     },
     setRating: (state, action) => {
-      state.heroes.map((hero) => {
-        if (hero.id === action.payload.id) hero.rating = action.payload.rating;
+      let matchHero = false;
+      state.rating.find((item) => {
+        if (item.id === action.payload.id) {
+          matchHero = true;
+          item.rating = action.payload.rating;
+        }
       });
+      if (!matchHero) state.rating.push(action.payload);
     },
   },
 });
+
 export const { setHeroesState, setOffset, setRating } = heroesSlice.actions;
 export default heroesSlice.reducer;

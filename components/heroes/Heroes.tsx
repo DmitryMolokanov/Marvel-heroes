@@ -1,7 +1,6 @@
 "use client";
 
 import { publicKey, timestamp, hash } from "../../utils/config/config";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./heroes.module.scss";
 import { IheroCard } from "@/types/heroCard";

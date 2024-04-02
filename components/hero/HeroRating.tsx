@@ -3,7 +3,8 @@ import styles from "./hero.module.scss";
 import React, { useEffect, useRef, useState } from "react";
 import { IheroCard } from "@/types/heroCard";
 import { setRating } from "@/store/reducers/heroesSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface HeroRatingProps {
   hero: IheroCard;
@@ -11,8 +12,9 @@ interface HeroRatingProps {
 
 const HeroRating = ({ hero }: HeroRatingProps) => {
   const ref: React.RefObject<HTMLDivElement> = useRef(null);
+  const ratingList = useSelector((state: RootState) => state.heroes.rating);
   const disptch = useDispatch();
-  const [initRating, setInitRating] = useState(hero.rating || 0);
+  const [initRating, setInitRating] = useState(0);
 
   const getRating = (e: any) => {
     setInitRating(e.target.id);
@@ -40,14 +42,16 @@ const HeroRating = ({ hero }: HeroRatingProps) => {
   };
 
   useEffect(() => {
-    if (initRating) {
-      Array.from(ref.current!.children).forEach((el: any) => {
-        if (el.id <= initRating) {
-          el.style.opacity = 1;
-        }
-      });
-    }
-  }, [initRating]);
+    ratingList.find((item) => {
+      if (item.id === hero.id) {
+        Array.from(ref.current!.children).forEach((el: any) => {
+          if (el.id <= item.rating) {
+            el.style.opacity = 1;
+          }
+        });
+      }
+    });
+  }, [hero, ratingList]);
 
   return (
     <div
