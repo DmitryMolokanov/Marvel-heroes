@@ -11,10 +11,11 @@ interface HeroFavoritesProps {
 const HeroFavorites = ({ hero }: HeroFavoritesProps) => {
   const dispatch = useDispatch();
   const { favorites } = useSelector((state: RootState) => state.heroes);
+  const { favoritesId } = useSelector((state: RootState) => state.heroes);
   const [isFavorites, setIsFavorites] = useState(false);
 
   const getFavorite = () => {
-    if (!favorites.includes(hero)) {
+    if (!favoritesId.includes(hero.id)) {
       dispatch(setFavorites(hero));
       setIsFavorites(true);
     } else {
@@ -24,8 +25,10 @@ const HeroFavorites = ({ hero }: HeroFavoritesProps) => {
   };
 
   useEffect(() => {
-    if (favorites.includes(hero)) setIsFavorites(true);
-  }, [favorites, hero, isFavorites]);
+    if (favoritesId.includes(hero.id)) {
+      setIsFavorites(true);
+    } else setIsFavorites(false);
+  }, [favorites, favoritesId, hero, isFavorites]);
 
   return (
     <button onClick={() => getFavorite()}>

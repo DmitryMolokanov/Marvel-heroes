@@ -14,11 +14,9 @@ interface FavoriteDeleteBtnProps {
 const FavoriteDeleteBtn: FC<FavoriteDeleteBtnProps> = ({ hero }) => {
   const { favorites } = useSelector((store: RootState) => store.heroes);
   const dispatch = useDispatch();
-  console.log(favorites);
 
   const deleteHeroFromFavorites = () => {
-    console.log(hero);
-    dispatch(deleteFavorites(hero.id));
+    dispatch(deleteFavorites(hero));
   };
 
   return (
