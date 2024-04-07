@@ -21,7 +21,7 @@ const Header = () => {
       <div className={style.HeaderMenu}>
         <div className={style.HeaderMenuContainer}>
           <Link href={"/heroes"}>Heroes</Link>
-          <Link href={"#"}>Favorites</Link>
+          <Link href={"/favorites"}>Favorites</Link>
           <button onClick={handleshowSearch}>Search</button>
         </div>
         <div className={style.HeaderInputContainer}>

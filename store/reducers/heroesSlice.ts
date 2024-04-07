@@ -6,12 +6,14 @@ interface heroesState {
   heroes: IheroCard[];
   offset: number;
   rating: Irating[];
+  favorites: IheroCard[];
 }
 
 export const initialState: heroesState = {
   heroes: [],
   offset: 30,
   rating: [],
+  favorites: [],
 };
 
 export const heroesSlice = createSlice({
@@ -34,8 +36,24 @@ export const heroesSlice = createSlice({
       });
       if (!matchHero) state.rating.push(action.payload);
     },
+    setFavorites: (state, action) => {
+      if (state.favorites.includes(action.payload)) return;
+      state.favorites.push(action.payload);
+    },
+    deleteFavorites: (state, action) => {
+      console.log(action.payload);
+      state.favorites = state.favorites.filter((item) => {
+        return item.id !== action.payload;
+      });
+    },
   },
 });
 
-export const { setHeroesState, setOffset, setRating } = heroesSlice.actions;
+export const {
+  setHeroesState,
+  setOffset,
+  setRating,
+  setFavorites,
+  deleteFavorites,
+} = heroesSlice.actions;
 export default heroesSlice.reducer;
