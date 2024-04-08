@@ -1,0 +1,59 @@
+.HelpSearchComponent {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  .HelpSearchTitle {
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin: 5px 0px;
+  }
+  .HelpSearchInput {
+    width: 100%;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    input {
+      width: 32%;
+      font-size: 20px;
+      border: 0;
+      border-radius: 20px;
+      padding-left: 10px;
+      &:focus {
+        outline-color: red;
+      }
+    }
+  }
+  .HelpSearchComponentContainer {
+    display: flex;
+    .HelpSearchComponentContainerList {
+      width: 40%;
+      .HelpSearchHeroList {
+        margin-left: 10px;
+        padding: 2px 5px;
+        width: 80%;
+        border: 1px solid rgb(205, 205, 205);
+        color: rgb(205, 205, 205);
+        cursor: pointer;
+        &:hover {
+          color: red;
+          font-size: 16px;
+          background-color: white;
+        }
+      }
+    }
+    .HelpSearchDiscription {
+      width: 50%;
+      font-size: 20px;
+      color: white;
+      text-indent: 30px;
+      text-align: justify;
+    }
+    .HelpSearchToTopBtn {
+      position: fixed;
+      top: 80vh;
+      right: 20px;
+      margin-left: 10px;
+    }
+  }
+}

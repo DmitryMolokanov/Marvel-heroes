@@ -7,6 +7,7 @@ import { setHero } from "@/store/reducers/heroSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import style from "./style.module.scss";
+import Link from "next/link";
 
 interface HeaderSearchProps {
   input: string;
@@ -31,7 +32,6 @@ export default function HeaderSearch({
     const result = await res.json();
     const hero = result.data.results;
     if (hero.length === 0) {
-      console.log("err");
       setInput("");
       setErr(true);
       return;
@@ -59,7 +59,16 @@ export default function HeaderSearch({
             alt="search"
           />
         </button>
+        <Link href={"/help-search"}>
+          <Image
+            src={"/vectors/question-sign.png"}
+            width={20}
+            height={20}
+            alt="question-sign"
+          />
+        </Link>
       </form>
+      <button></button>
     </div>
   );
 }
