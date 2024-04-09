@@ -47,6 +47,7 @@ const HeroRating = ({ hero }: HeroRatingProps) => {
         Array.from(ref.current!.children).forEach((el: any) => {
           if (el.id <= item.rating) {
             el.style.opacity = 1;
+            setInitRating(item.rating);
           }
         });
       }

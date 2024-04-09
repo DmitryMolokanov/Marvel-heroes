@@ -12,7 +12,7 @@ const HelpSearchComponent = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const router = useRouter();
   const dispatch = useDispatch();
-  const topBtn = useRef(null);
+  const topBtn = useRef<HTMLButtonElement>(null);
 
   const getHero = async (value: string) => {
     const res = await fetch(
@@ -26,15 +26,15 @@ const HelpSearchComponent = () => {
     }
   };
 
-  document.addEventListener("scroll", () => {
-    if (window.scrollY >= document.documentElement.clientHeight) {
-      if (topBtn.current) topBtn.current.style.display = "block";
-    } else {
-      if (topBtn.current) topBtn.current.style.display = "none";
-    }
-  });
-
   useEffect(() => {
+    document.addEventListener("scroll", () => {
+      if (window.scrollY >= document.documentElement.clientHeight) {
+        if (topBtn.current) topBtn.current.style.display = "block";
+      } else {
+        if (topBtn.current) topBtn.current.style.display = "none";
+      }
+    });
+
     let selectHero;
     if (inputValue?.length) {
       selectHero = allHeroesArr.filter((hero) =>
