@@ -17,7 +17,7 @@
       width: 32%;
       font-size: 20px;
       border: 0;
-      border-radius: 20px;
+      border-radius: 5px;
       padding-left: 10px;
       &:focus {
         outline-color: red;
@@ -26,7 +26,7 @@
   }
   .HelpSearchComponentContainer {
     display: flex;
-    .HelpSearchComponentContainerList {
+    .HelpSearchContainerList {
       width: 40%;
       .HelpSearchHeroList {
         margin-left: 10px;
@@ -54,6 +54,9 @@
       top: 80vh;
       right: 20px;
       margin-left: 10px;
+      img {
+        cursor: pointer;
+      }
     }
   }
 }
