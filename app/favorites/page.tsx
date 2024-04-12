@@ -2,7 +2,6 @@
 
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import HeroCard from "@/components/heroes/HeroCard";
 import containerStyles from "../../components/heroes/heroes.module.scss";
 import styles from "../../components/favorites/styles.module.scss";

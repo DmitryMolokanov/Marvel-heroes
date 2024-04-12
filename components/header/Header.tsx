@@ -15,7 +15,7 @@ const Header = () => {
     <div className={style.Header}>
       <div className={style.HeaderMain}>
         <Link href={"/"}>
-          <Image src="/img/logo.png" width={200} height={100} alt="logo" />
+          <Image src="/img/logo.png" width={300} height={100} alt="logo" />
         </Link>
       </div>
       <div className={style.HeaderMenu}>
