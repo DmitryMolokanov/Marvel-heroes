@@ -6,7 +6,13 @@ const Footer = () => {
   return (
     <div className={styles.Footer}>
       <Link href={"https://www.marvel.com/"}>
-        <Image src={"/img/logo.png"} width={200} height={100} alt="logo" />
+        <Image
+          src={"/img/logo.png"}
+          width={200}
+          height={100}
+          alt="logo"
+          className={styles.FooterMainImg}
+        />
       </Link>
       <div className={styles.FooterNetworkContainer}>
         <div className={styles.FooterNetwork}>

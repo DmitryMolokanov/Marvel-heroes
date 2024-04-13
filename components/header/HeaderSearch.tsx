@@ -26,6 +26,10 @@ export default function HeaderSearch({
 
   const getSingleHero = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!input) {
+      setErr(true);
+      return;
+    }
     const res = await fetch(
       `https://gateway.marvel.com/v1/public/characters?limit=30&ts=${timestamp}&apikey=${publicKey}&hash=${hash}&name=${input}`
     );

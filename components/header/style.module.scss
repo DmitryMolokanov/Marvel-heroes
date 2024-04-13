@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     background-color: rgb(46, 46, 46);
+
     height: 50px;
     .HeaderMenuContainer {
       display: flex;
@@ -22,6 +23,7 @@
         font-size: 18px;
         text-decoration: none;
         color: rgb(211, 211, 211);
+        cursor: pointer;
         &:hover {
           color: white;
         }
@@ -58,6 +60,19 @@
           top: 3px;
           right: 1%;
         }
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .Header {
+    .HeaderMenu {
+      .HeaderMenuContainer {
+        width: 100%;
+      }
+      .HeaderInputContainer {
+        top: 100%;
+        left: 20%;
       }
     }
   }

@@ -4,10 +4,12 @@
   right: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
-  height: 100px;
-  margin-top: 20px;
+  padding: 50px 0px;
   overflow: hidden;
+
   .FooterNetworkContainer {
     display: flex;
     justify-content: space-evenly;
@@ -26,6 +28,22 @@
       display: flex;
       align-items: center;
       color: white;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .Footer {
+    padding: 30px;
+    .FooterMainImg {
+      width: 100px;
+      height: 50px;
+    }
+    .FooterNetworkContainer {
+      width: 30%;
+    }
+    img {
+      width: 20px;
+      height: 20px;
     }
   }
 }

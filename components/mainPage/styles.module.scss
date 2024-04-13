@@ -37,3 +37,29 @@
     top: 150px;
   }
 }
+
+@media (max-width: 500px) {
+  .MainPage {
+    .mainPageDiscription {
+      width: 90%;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+    .mainPageIron {
+      display: none;
+    }
+    .mainPageSpider {
+      top: 0px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  @keyframes iron {
+    from {
+      top: -500px;
+    }
+    to {
+      top: 0px;
+    }
+  }
+}
