@@ -25,8 +25,9 @@ const Heroes = ({ intialHeroes }: { intialHeroes: IheroCard[] }) => {
     const addHeroes = async () => {
       if (heroes.length >= 1564) return;
       if (
+        window &&
         window.innerHeight + window.scrollY + 1 >=
-        document.documentElement.scrollHeight
+          document.documentElement.scrollHeight
       ) {
         setLoading(true);
         const res = await fetch(
@@ -43,9 +44,9 @@ const Heroes = ({ intialHeroes }: { intialHeroes: IheroCard[] }) => {
       if (!loading) addHeroes();
     };
 
-    window.addEventListener("scroll", scrollHandler);
+    window && window.addEventListener("scroll", scrollHandler);
     return () => {
-      window.removeEventListener("scroll", scrollHandler);
+      window && window.removeEventListener("scroll", scrollHandler);
     };
   }, [heroes, dispatch, offset, loading]);
 

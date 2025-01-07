@@ -16,13 +16,13 @@ const HelpSearchComponent = () => {
   const topBtn = useRef<HTMLButtonElement>(null);
 
   const scrolled = () => {
-    if (window.scrollY > 300) {
+    if (window && window.scrollY > 300) {
       setVisible(true);
+      window.addEventListener("scroll", scrolled);
     } else {
       setVisible(false);
     }
   };
-  window.addEventListener("scroll", scrolled);
 
   useEffect(() => {
     let selectHero;

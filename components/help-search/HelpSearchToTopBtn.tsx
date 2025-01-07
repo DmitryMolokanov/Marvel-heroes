@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 const HelpSearchToTopBtn = ({ topBtn }: { topBtn: any }) => {
   return (
     <div className={styles.HelpSearchToTopBtn}>
-      <button onClick={() => window.scrollTo(0, 0)} ref={topBtn}>
+      <button onClick={() => window && window.scrollTo(0, 0)} ref={topBtn}>
         <Image src={"/vectors/triangle.png"} width={40} height={40} alt="top" />
       </button>
     </div>
